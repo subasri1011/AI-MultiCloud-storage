@@ -22,6 +22,33 @@ const cloudProviders = [
   { name: 'MEGA', used: '20 GB', total: '50 GB', percent: 40, icon: '🛡️' },
 ];
 
+const providerFileTypes = {
+  'Google Drive': [
+    { type: 'PDF', count: 84 },
+    { type: 'DOCX', count: 23 },
+    { type: 'PNG', count: 19 },
+    { type: 'ZIP', count: 12 },
+  ],
+  OneDrive: [
+    { type: 'DOCX', count: 46 },
+    { type: 'PPTX', count: 18 },
+    { type: 'XLSX', count: 11 },
+    { type: 'MP4', count: 6 },
+  ],
+  Dropbox: [
+    { type: 'MP4', count: 31 },
+    { type: 'JPG', count: 57 },
+    { type: 'ZIP', count: 7 },
+    { type: 'PDF', count: 14 },
+  ],
+  MEGA: [
+    { type: 'ZIP', count: 22 },
+    { type: 'TAR', count: 9 },
+    { type: 'PDF', count: 12 },
+    { type: 'MOV', count: 8 },
+  ],
+};
+
 const recommendations = [
   'Move archived files to MEGA to save space on OneDrive.',
   'Review 3 duplicate PDFs detected in Google Drive and Dropbox.',
@@ -66,7 +93,7 @@ function Sidebar({ active, onSelect }) {
       <div className="mb-8 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cobalt to-cobalt-dark text-lg text-white">☁️</div>
         <div>
-          <div className="font-heading text-lg font-bold text-ink">Valute Mate</div>
+          <div className="font-heading text-lg font-bold text-ink">Valute Mind</div>
           <div className="text-xs text-muted">AI Cloud Dashboard</div>
         </div>
       </div>
@@ -112,7 +139,7 @@ export default function DashboardPage() {
   const [query, setQuery] = useState('');
   const [files, setFiles] = useState(initialFiles);
   const [selectedCloud, setSelectedCloud] = useState('Google Drive');
-  const [uploadedCloudFile, setUploadedCloudFile] = useState('');
+  const [uploadedCloudFile, setUploadedCloudFile] = useState(null);
   const [providerFiles, setProviderFiles] = useState({
     'Google Drive': ['Quarterly Report.pdf', 'Team Docs.zip'],
     OneDrive: ['Client Notes.docx', 'Finance Deck.pptx'],
@@ -120,6 +147,7 @@ export default function DashboardPage() {
     MEGA: ['Invoice Archive.zip', 'Emergency Backup.tar'],
   });
   const uploadRef = useRef(null);
+  const cloudUploadRef = useRef(null);
 
   const filteredFiles = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -130,6 +158,8 @@ export default function DashboardPage() {
   }, [query, files]);
 
   const selectedProvider = cloudProviders.find((provider) => provider.name === selectedCloud) || cloudProviders[0];
+  const selectedProviderTypes = providerFileTypes[selectedCloud] || providerFileTypes['Google Drive'];
+  const cloudFileExtension = uploadedCloudFile?.name?.split('.').pop()?.toUpperCase() || 'FILE';
   const totalFiles = files.length + 1280;
   const totalStorage = '480 GB';
 
@@ -166,7 +196,7 @@ export default function DashboardPage() {
     const uploaded = event.target.files?.[0];
     if (!uploaded) return;
 
-    setUploadedCloudFile(uploaded.name);
+    setUploadedCloudFile(uploaded);
     setProviderFiles((current) => ({
       ...current,
       [selectedCloud]: [uploaded.name, ...(current[selectedCloud] || [])],
@@ -352,13 +382,34 @@ export default function DashboardPage() {
                   </div>
 
                   <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                    <label className="focus-ring flex-1 cursor-pointer rounded-xl border border-line bg-white px-4 py-3 text-sm text-muted">
-                      <span>{uploadedCloudFile || 'Choose a file to upload'}</span>
-                      <input type="file" className="hidden" onChange={handleCloudUpload} />
+                    <label
+                      className="focus-ring flex-1 cursor-pointer rounded-xl border border-line bg-white px-4 py-3 text-sm text-muted"
+                      onClick={() => cloudUploadRef.current?.click()}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="truncate">{uploadedCloudFile?.name || 'Choose a file to upload'}</span>
+                        <span className="rounded-full bg-cobalt/10 px-2 py-1 text-xs font-semibold text-cobalt">
+                          {uploadedCloudFile ? cloudFileExtension : 'TYPE'}
+                        </span>
+                      </div>
+                      <input ref={cloudUploadRef} type="file" className="hidden" onChange={handleCloudUpload} />
                     </label>
-                    <button type="button" className="focus-ring rounded-xl bg-mint px-4 py-3 text-sm font-semibold text-white">
+                    <button
+                      type="button"
+                      onClick={() => cloudUploadRef.current?.click()}
+                      className="focus-ring rounded-xl bg-mint px-4 py-3 text-sm font-semibold text-white"
+                    >
                       Upload
                     </button>
+                  </div>
+
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                    {selectedProviderTypes.map((fileType) => (
+                      <div key={fileType.type} className="rounded-xl border border-line bg-white px-3 py-2 text-sm text-ink">
+                        <div className="font-semibold">{fileType.type}</div>
+                        <div className="text-muted">{fileType.count} files</div>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="mt-4">

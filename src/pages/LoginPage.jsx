@@ -16,7 +16,7 @@ export default function LoginPage() {
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 text-xl">🛡️</div>
               <div>
-                <div className="font-heading text-2xl font-bold">Valute Mate</div>
+                <div className="font-heading text-2xl font-bold">Valute Mind</div>
                 <div className="text-sm text-white/80">Trusted multi-cloud access</div>
               </div>
             </div>

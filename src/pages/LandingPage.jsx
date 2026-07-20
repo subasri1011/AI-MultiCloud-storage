@@ -21,7 +21,7 @@ function Logo() {
         ☁️
       </div>
       <div>
-        <div className="font-heading text-lg font-bold text-ink">Valute Mate</div>
+        <div className="font-heading text-lg font-bold text-ink">Valute Mind</div>
         <div className="text-xs text-muted">AI Cloud Storage</div>
       </div>
     </div>
@@ -164,7 +164,7 @@ export default function LandingPage() {
             <div className="rounded-3xl border border-line bg-white p-8 shadow-soft">
               <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-cobalt">About</div>
               <h2 className="text-3xl font-bold text-ink">One secure cloud hub for modern teams</h2>
-              <p className="mt-4 text-muted">Valute Mate brings all your cloud storage into a single intelligent operating layer so you can connect, search, organize, and secure your files without juggling multiple apps.</p>
+              <p className="mt-4 text-muted">Valute Mind brings all your cloud storage into a single intelligent operating layer so you can connect, search, organize, and secure your files without juggling multiple apps.</p>
             </div>
             <div className="rounded-3xl bg-gradient-to-br from-cobalt-dark to-cobalt p-8 text-white shadow-soft">
               <h3 className="text-2xl font-bold">Built for clarity, speed, and trust.</h3>
@@ -180,7 +180,7 @@ export default function LandingPage() {
                 <div>
                   <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-cobalt">Contact</div>
                   <h2 className="text-3xl font-bold text-ink">Let’s simplify your storage.</h2>
-                  <p className="mt-3 text-muted">Tell us what you need and we’ll help you get started with Valute Mate.</p>
+                  <p className="mt-3 text-muted">Tell us what you need and we’ll help you get started with Valute Mind.</p>
                 </div>
                 <form className="space-y-4">
                   <input className="focus-ring w-full rounded-xl border border-line bg-paper px-4 py-3" placeholder="Your name" />
@@ -200,7 +200,7 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-sm text-muted sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="flex items-center gap-3">
             <Logo />
-            <span>© 2026 Valute Mate. All rights reserved.</span>
+            <span>© 2026 Valute Mind. All rights reserved.</span>
           </div>
           <div className="flex gap-4">
             <a href="#about" className="transition hover:text-cobalt">About</a>
