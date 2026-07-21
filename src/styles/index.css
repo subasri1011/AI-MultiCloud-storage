@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body text-ink bg-paper antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  /* Visible keyboard focus for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid #3457D5;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-cobalt px-6 py-3
+           text-sm font-semibold text-white shadow-card transition
+           hover:bg-cobalt-dark active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface px-6 py-3
+           text-sm font-semibold text-ink transition hover:border-cobalt hover:text-cobalt active:scale-[0.98];
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface p-6 shadow-card;
+  }
+  .section {
+    @apply mx-auto max-w-7xl px-6 py-24 md:px-10;
+  }
+  .eyebrow {
+    @apply text-xs font-mono font-medium uppercase tracking-[0.18em] text-cobalt;
+  }
+}
+
+/* Signature element: converging sync-lines animation used in the hero illustration */
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.sync-line {
+  stroke-dasharray: 4 6;
+  animation: dashflow 1.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sync-line {
+    animation: none;
+  }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulseRing 2.4s ease-out infinite;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring {
+    animation: none;
+  }
+}
