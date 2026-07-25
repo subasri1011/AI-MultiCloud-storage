@@ -1,0 +1,36 @@
+{
+  "providers": [
+    {
+      "provider_id": "google_drive",
+      "display_name": "Google Drive",
+      "free_space_mb": 5000,
+      "max_file_size_mb": 10240,
+      "supported_types": ["pdf", "docx", "xlsx", "jpg", "png", "pptx"],
+      "preferred": true
+    },
+    {
+      "provider_id": "dropbox",
+      "display_name": "Dropbox",
+      "free_space_mb": 2500,
+      "max_file_size_mb": 5120,
+      "supported_types": ["pdf", "docx", "jpg", "png", "mp4"],
+      "preferred": false
+    },
+    {
+      "provider_id": "one_drive",
+      "display_name": "OneDrive",
+      "free_space_mb": 1200,
+      "max_file_size_mb": 2048,
+      "supported_types": ["pdf", "docx", "xlsx", "pptx"],
+      "preferred": false
+    },
+    {
+      "provider_id": "aws_s3",
+      "display_name": "AWS S3",
+      "free_space_mb": 20000,
+      "max_file_size_mb": 51200,
+      "supported_types": ["*"],
+      "preferred": false
+    }
+  ]
+}

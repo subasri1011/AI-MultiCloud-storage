@@ -1,0 +1,14 @@
+[project]
+name = "security-scoring"
+version = "0.1.0"
+description = "A reusable security scoring module for file sharing risk assessment."
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["security", "scoring", "risk", "data classification"]
+
+[project.urls]
+"Source" = "https://example.com"
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"

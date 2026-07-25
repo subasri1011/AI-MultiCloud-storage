@@ -7,8 +7,15 @@ dist/
 .vite/
 *.log
 
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
 # OS/editor noise
 .DS_Store
-
-node_modules
-node_modules
