@@ -1,1 +1,5 @@
-fastapi==0.117.1`nuvicorn==0.36.0`npillow==11.3.0`nimagehash==4.0`npython-multipart==0.0.20
+fastapi==0.117.1
+uvicorn==0.36.0
+pillow==11.3.0
+imagehash==4.0
+python-multipart==0.20
